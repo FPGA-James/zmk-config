@@ -73,8 +73,8 @@
 				//                  |	|   |	|	|  	|       |      |       |       |
 			bindings = <
 				&trans  &trans	&trans 	&trans	&trans	&trans                		&kp K_REDO 	&kp K_PASTE	&kp K_COPY	&kp K_CUT	&kp K_UNDO	&trans
-				&trans  &trans	&trans	&trans	&trans	&trans                      &trans  	&trans		&trans		&trans		&trans		&trans
-				&trans  &trans 	&trans 	&trans  &trans	&trans                      &kp LEFT  	&kp DOWN  	&kp UP   	&kp RIGHT 	&kp CAPS 	&trans
+				&trans  &trans	&trans	&trans	&trans	&trans                      &kp CAPS  	&trans		&trans		&trans		&trans		&trans
+				&trans  &trans 	&trans 	&trans  &trans	&trans                      &kp LEFT  	&kp DOWN  	&kp UP   	&kp RIGHT 	&trans 	    &trans
 				&trans	&trans 	&trans	&trans 	&trans 	&trans	&trans   &trans		&kp INS  	&kp HOME	&kp PG_DN	&kp PG_UP	&kp END		&trans
 			    	                    &trans  &trans  &trans  &trans   &kp RET    &kp BSPC	&kp DEL		&trans
 			>;
