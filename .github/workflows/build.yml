@@ -3,4 +3,53 @@ on: [push, pull_request, workflow_dispatch]
 
 jobs:
   build:
-    uses: zmkfirmware/zmk/.github/workflows/build-user-config.yml@v0.1
+    runs-on: ubuntu-latest
+    container:
+      image: zmkfirmware/zmk-build-arm:stable
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - board: nice_nano/nrf52840
+            shield: lily58_left
+          - board: nice_nano/nrf52840
+            shield: lily58_right
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Cache west modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            modules/
+            tools/
+            zephyr/
+            zmk/
+          key: ${{ runner.os }}-west-${{ hashFiles('config/west.yml') }}
+
+      - name: West Init
+        run: west init -l config
+
+      - name: West Update
+        run: west update
+
+      - name: West Zephyr Export
+        run: west zephyr-export
+
+      - name: Build
+        run: |
+          west build -b "${{ matrix.board }}" -s zmk/app -- \
+            -DSHIELD="${{ matrix.shield }}" \
+            -DZMK_CONFIG="${GITHUB_WORKSPACE}/config"
+
+      - name: Rename artifact
+        run: |
+          BOARD_SAFE=$(echo "${{ matrix.board }}" | tr '/' '_')
+          cp build/zephyr/zmk.uf2 "${{ matrix.shield }}-${BOARD_SAFE}.uf2"
+
+      - name: Upload firmware
+        uses: actions/upload-artifact@v4
+        with:
+          name: firmware-${{ matrix.shield }}
+          path: "*.uf2"
