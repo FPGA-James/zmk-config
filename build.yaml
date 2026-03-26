@@ -23,13 +23,13 @@ include:
   # - board: nice_nano/nrf52840
   #   shield: settings_reset
 
-  - board: nice_nano//zmk@2
-    shield: lily58_left
-  - board: nice_nano//zmk@2
-    shield: lily58_right
-  
-  
-  # - board: nrfmicro/nrf52840/zmk@1.3
+  # - board: nice_nano//zmk@2
   #   shield: lily58_left
-  # - board: nrfmicro/nrf52840/zmk@1.3
+  # - board: nice_nano//zmk@2
   #   shield: lily58_right
+  
+  
+  - board: nrfmicro/nrf52840/zmk@1.3
+    shield: lily58_left
+  - board: nrfmicro/nrf52840/zmk@1.3
+    shield: lily58_right
