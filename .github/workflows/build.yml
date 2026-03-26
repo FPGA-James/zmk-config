@@ -10,9 +10,9 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - board: nice_nano_v2/nrf52840
+          - board: nice_nano/nrf52840
             shield: lily58_left
-          - board: nice_nano_v2/nrf52840
+          - board: nice_nano/nrf52840
             shield: lily58_right
     steps:
       - name: Checkout
@@ -26,7 +26,7 @@ jobs:
             tools/
             zephyr/
             zmk/
-          key: ${{ runner.os }}-west-${{ hashFiles('config/west.yml') }}
+          key: ${{ runner.os }}-west-v2-${{ hashFiles('config/west.yml') }}
 
       - name: West Init
         run: west init -l config
