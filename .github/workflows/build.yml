@@ -10,9 +10,9 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - board: nice_nano_v2
+          - board: nice_nano_v2/nrf52840
             shield: lily58_left
-          - board: nice_nano_v2
+          - board: nice_nano_v2/nrf52840
             shield: lily58_right
     steps:
       - name: Checkout
